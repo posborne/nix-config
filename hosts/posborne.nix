@@ -33,5 +33,5 @@ in {
   };
 
   # TODO: should use ${config.network.hostName}?
-  home-manager.users.posborne = import ../../../../home-manager/posborne/qemuVM.nix;
+  home-manager.users.posborne = import ../home-manager/posborne.nix;
 }

@@ -8,7 +8,7 @@
 }: {
 
   imports = [
-    ../features/cli
+    ./cli.nix
   ];
   #  ++ (builtins.attrValues outputs.homeManagerModules);
   

@@ -31,8 +31,8 @@
 	extraSpecialArgs = {inherit inputs outputs;};
       };
   in {
-    nixosModules = ./modules/nixos;
-    homeManagerModules = ./modules/home-manager;
+    # nixosModules = ./modules/nixos;
+    # homeManagerModules = ./modules/home-manager;
     nixosConfigurations = {
       qemuVM = mkNixos [./hosts/qemuVM];
     };

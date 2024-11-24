@@ -9,10 +9,10 @@
 
   imports = [
     ./hardware-configuration.nix
-    ../common/global
-    ../common/users/posborne
-    ../common/optional/gnome.nix
-    ../common/optional/grub.nix
+    ../global.nix
+    ../posborne.nix
+    ../gnome.nix
+    ../grub.nix
   ];
 
   networking = {
