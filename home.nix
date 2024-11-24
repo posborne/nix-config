@@ -12,6 +12,7 @@
 
   home.packages = with pkgs; [
     neofetch
+    ripgrep
   ];
 
   home.stateVersion = "24.11";

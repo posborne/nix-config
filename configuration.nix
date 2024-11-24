@@ -2,7 +2,6 @@
 
 {
   imports = [
-    # inputs.home-manager.nixosModules.default
     ./hardware-configuration.nix
   ];
 
@@ -14,14 +13,6 @@
     shell = pkgs.zsh;
   };
   
-  # Enable and configure home-manager
-  # home-manager = {
-  #   extraSpecialArgs = { inherit inputs; };
-  #   users = {
-  #     "posborne" = import ./home.nix;
-  #   };
-  # };
-
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
@@ -93,6 +84,7 @@
     emacs-nox
     tmux
     git
+    home-manager
   ];
 
   # List services that you want to enable:

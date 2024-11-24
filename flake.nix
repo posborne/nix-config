@@ -8,24 +8,27 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # flake-parts.url = "github:hercules-ci/flake-parts";
-    # nixos-unified.url = "github:srid/nixos-unified";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    let
+      lib = nixpkgs.lib;
       system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+  in {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      inherit system;
       specialArgs = { inherit inputs; }; # set inputs as submodule special args
       modules = [
         ./configuration.nix
-	
-	home-manager.nixosModules.home-manager
-	{
-	  home-manager.useGlobalPkgs = true;
-	  home-manager.useUserPackages = true;
-	  home-manager.users.posborne = import ./home.nix;
-        }
       ];
+    };
+
+    homeConfigurations = {
+      posborne = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home.nix ];
+      };
     };
   };
 }
