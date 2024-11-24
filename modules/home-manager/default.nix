@@ -1,0 +1,3 @@
+# reusable home-manager modules
+{
+}
