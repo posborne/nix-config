@@ -2,6 +2,7 @@
 {
   imports = [
     ./emacs
+    ./python.nix
     ./zsh.nix
   ];
 

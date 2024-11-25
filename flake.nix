@@ -23,25 +23,25 @@
     systems,
     ...
   } @inputs: let
-    inherit (self) outputs;
-    lib = nixpkgs.lib // home-manager.lib;
-    systems = ["x86_64-linux"];
-    forEachSystem = f: lib.genAttrs (systems) (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs (systems) (
-      system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-    );
-  in
+  inherit (self) outputs;
+  lib = nixpkgs.lib // home-manager.lib;
+  systems = ["x86_64-linux"];
+  forEachSystem = f: lib.genAttrs (systems) (system: f pkgsFor.${system});
+  pkgsFor = lib.genAttrs (systems) (
+    system:
+    import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    }
+  );
+    in
   {
     inherit lib;
     nixosConfigurations = {
       qemuVM = nixpkgs.lib.nixosSystem {
         specialArgs = {
-	  inherit inputs outputs;
-	};
+	        inherit inputs outputs;
+	      };
         modules = [
           ./hosts/qemuVM
           ./users/posborne.nix
@@ -52,10 +52,10 @@
     homeConfigurations = {
       "posborne@qemuVM" = lib.homeManagerConfiguration {
         modules = [ ./users/posborne.nix ./home ];
-	pkgs = pkgsFor.x86_64-linux;
-	extraSpecialArgs = {
-	  inherit inputs outputs;
-	};
+	      pkgs = pkgsFor.x86_64-linux;
+	      extraSpecialArgs = {
+	        inherit inputs outputs;
+	      };
       };
     };
   };
