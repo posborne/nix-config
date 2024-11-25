@@ -12,6 +12,7 @@
     ./nix.nix
     ./systemd-initrd.nix
     ./gnome.nix
+    ./ssh.nix
   ];
 
   programs.zsh.enable = true;

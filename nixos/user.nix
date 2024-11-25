@@ -6,7 +6,8 @@
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
 
-  users.users.posborne = {
+  users.users."${config.me.username}" = {
+    description = config.me.name;
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [
@@ -24,14 +25,10 @@ in {
       "kvm"
       "adbgroup"
     ];
+    openssh.authorizedKeys.keys = config.me.sshPublicKeys;
 
-    # openssh.authorizedKeys.keys = [(builtins.readFile ../ssh.pub)];
-    # hashedPasswordFile = config.sops.secrets.posborne-password.path;
     packages = [
       pkgs.home-manager
     ];
   };
-
-  # TODO: should use ${config.network.hostName}?
-  home-manager.users.posborne = import ../home-manager/posborne.nix;
 }

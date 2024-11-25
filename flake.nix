@@ -9,35 +9,54 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    systems,
     ...
   } @inputs: let
     inherit (self) outputs;
-    forEachSystem = nixpkgs.lib.genAttrs ["x86_64-linux"];
-    forEachPkgs = f: forEachSystem (sys: f nixpkgs.legacyPkgs.${sys});
-    mkNixos = modules:
-      nixpkgs.lib.nixosSystem {
-        inherit modules;
-	specialArgs = {inherit inputs outputs;};
-      };
-    mkHome = modules: pkgs:
-      home-manager.lib.homemanagerConfiguration {
-        inherit modules pkgs;
-	extraSpecialArgs = {inherit inputs outputs;};
-      };
-  in {
-    # nixosModules = ./modules/nixos;
-    # homeManagerModules = ./modules/home-manager;
+    lib = nixpkgs.lib // home-manager.lib;
+    systems = ["x86_64-linux"];
+    forEachSystem = f: lib.genAttrs (systems) (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs (systems) (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
+  in
+  {
+    inherit lib;
     nixosConfigurations = {
-      qemuVM = mkNixos [./hosts/qemuVM];
+      qemuVM = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+	  inherit inputs outputs;
+	};
+        modules = [
+          ./hosts/qemuVM
+          ./users/posborne.nix
+        ];
+      };
     };
+
     homeConfigurations = {
-      "posborne@qemuVM" = mkHome [./home-manager/posborne/qemuVM.nix] nixpkgs.legacyPackages."x86-64-linux";
+      "posborne@qemuVM" = lib.homeManagerConfiguration {
+        modules = [ ./users/posborne.nix ./home ];
+	pkgs = pkgsFor.x86_64-linux;
+	extraSpecialArgs = {
+	  inherit inputs outputs;
+	};
+      };
     };
   };
 }

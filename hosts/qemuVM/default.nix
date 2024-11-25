@@ -9,10 +9,7 @@
 
   imports = [
     ./hardware-configuration.nix
-    ../global.nix
-    ../posborne.nix
-    ../gnome.nix
-    ../grub.nix
+    ../../nixos
   ];
 
   networking = {
@@ -41,6 +38,7 @@
 
   networking.firewall = {
     enable = true;
+    allowedTCPPorts = [ 22 ];
   };
 
   system.stateVersion = "24.11";
