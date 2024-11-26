@@ -20,8 +20,10 @@
       fzf
       htop
       jq
+      pstree
       ripgrep
       tmux
+      tree
       xsv
 
       # basic software stuff
@@ -59,8 +61,13 @@
       # security/privacy
       gnupg
 
-      # conferencing/email
+      # communications
+      discord
+      slack
+      telegram-desktop
       thunderbird
+      whatsapp-for-linux
+      zoom-us
 
       # text editors (sans emacs)
       helix
@@ -76,7 +83,7 @@
 
       # terminal emulators
       terminator
-      
+
 
       # browsers
       firefox

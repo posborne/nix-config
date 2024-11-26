@@ -5,6 +5,7 @@
     ./nix.nix
     ./systemd-initrd.nix
     ./user.nix
+    ./gaming.nix
     ./grub.nix
     ./gnome.nix
     ./ssh.nix
