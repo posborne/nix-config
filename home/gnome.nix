@@ -4,21 +4,6 @@
   gtk = {
     enable = true;
 
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-
-    theme = {
-      name = "palenight";
-      package = pkgs.palenight-theme;
-    };
-
-    cursorTheme = {
-      name = "Numix-Cursor";
-      package = pkgs.numix-cursor-theme;
-    };
-
     gtk3.extraConfig = {
       Settings = ''
         gtk-application-prefer-dark-theme=1
@@ -51,14 +36,7 @@
       ];
     };
 
-    # appearance preferences
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      enable-hot-corners = false;
-      accent-color = "blue";
-    };
-
-    # # workspaces
+    # workspaces
     "org/gnome/desktop/wm/preferences" = {
       workspace-names = [ "1" "2" "3" "4" ];
       num-workspaces = 4;
@@ -82,26 +60,70 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-        "system-monitor@gnome-shell-extensions.gcampax.github.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "dash-to-panel@jderose9.github.com"
+        "Vitals@CoreCoding.com"
+        "space-bar@luchrioh"
+        "tilingshell@ferrarodomenico.com"
       ];
     };
 
     # dash to panel settings
     "org/gnome/shell/extensions/dash-to-panel" = {
-      panel-positions = [
-        (mkDictionaryEntry["0" "TOP"])
-      ];
+      appicon-margin = 8;
+      appicon-padding = 4;
+      available-monitors = [ 0 ];
+      dot-position = "BOTTOM";
+      hotkeys-overlay-combo = "TEMPORARILY";
+      leftbox-padding = -1;
+      panel-anchors = ''
+        {"0":"MIDDLE"}
+      '';
+      panel-lengths = ''
+        {"0":100}
+      '';
+      panel-positions = ''
+        {"0":"TOP"}
+      '';
+      panel-sizes = ''
+        {"0":32}
+      '';
+      primary-monitor = 0;
+      status-icon-padding = -1;
+      tray-padding = -1;
+      window-preview-title-position = "TOP";
     };
+
+    # vitals extension
+    "org/gnome/shell/extensions/vitals" = {
+      hot-sensors = [ "_memory_usage_" "_processor_usage_" "_storage_free_" ];
+      show-network = true;
+    };
+
+    "/org/gnome/desktop/interface" = {
+      accent-color = "blue";
+      color-scheme = "prefer-dark";
+      enable-hot-corners = false;
+      gtk-theme = "catppuccin-frappe-blue-standard";
+      icon-theme = "Adwaita";
+      toolkit-accessibility = false;
+    };
+
   };
 
   # install required packages for themes, gnome-extensions, etc.
   home.packages = with pkgs; [
+    dconf2nix
+    catppuccin-gtk
+    catppuccin-cursors
+    catppuccin-papirus-folders
+    palenight-theme
+    gnome-tweaks
     gnomeExtensions.user-themes
     gnomeExtensions.tray-icons-reloaded
     gnomeExtensions.vitals
     gnomeExtensions.dash-to-panel
     gnomeExtensions.space-bar
+    gnomeExtensions.tiling-shell
   ];
 }

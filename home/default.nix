@@ -21,6 +21,7 @@
       fzf
       htop
       jq
+      killall
       pstree
       ripgrep
       tmux
