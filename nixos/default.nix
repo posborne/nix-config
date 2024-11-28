@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    ../common/features.nix
     ./nix.nix
     ./systemd-initrd.nix
     ./user.nix

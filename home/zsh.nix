@@ -23,7 +23,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "gpg-agent" "python" "ripgrep" "ssh-agent" "sudo" ];
+      plugins = [ "git" "gpg-agent" "python" "ssh-agent" "sudo" ];
       theme = "ys";
     };
   };

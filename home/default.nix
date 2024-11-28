@@ -1,7 +1,11 @@
 { lib, pkgs, config, ... }:
 {
   imports = [
+    ../common/features.nix
+    ./development.nix
+    ./desktop.nix
     ./emacs
+    ./gaming.nix
     ./gnome.nix
     ./python.nix
     ./zsh.nix
@@ -12,7 +16,7 @@
       homeDirectory = lib.mkDefault "/home/${config.me.username}";
       username = "${config.me.username}";
       stateVersion = "24.11";
-     };
+    };
 
     home.packages = with pkgs; [
       # basic cli stuff
@@ -28,9 +32,6 @@
       tree
       xsv
 
-      # basic software stuff
-      just
-
       # version control
       gh
       git
@@ -41,19 +42,10 @@
       lsof
 
       # network tools
-      nmap
       iproute2
 
-      # merge tooling
-      meld
-
       # media/graphics
-      mplayer
       imagemagick
-      vlc
-      gimp
-      ffmpeg-full
-      ffmpegthumbnailer
 
       # desktop tools
       pavucontrol
@@ -63,37 +55,13 @@
       # security/privacy
       gnupg
 
-      # communications
-      discord
-      slack
-      telegram-desktop
-      thunderbird
-      whatsapp-for-linux
-      zoom-us
-
       # text editors (sans emacs)
       helix
       neovim
 
-      # productivity
-      libreoffice
-      
       # additional cli tools
       xclip
       graphviz
-      xdg-utils
-
-      # terminal emulators
-      terminator
-
-
-      # browsers
-      firefox
-      chromium
-
-      # fonts
-      liberation_ttf
-      ttf_bitstream_vera
 
       # other
       home-manager

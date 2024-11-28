@@ -16,7 +16,7 @@
     networkmanager = {
       enable = true;
     };
-    hostName = "qemuVM";
+    hostName = "qemu-vm";
   };
   nix.gc.dates = "daily";
   time.timeZone = "America/Chicago";

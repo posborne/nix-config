@@ -18,45 +18,48 @@
 
   outputs = {
     self,
-    nixpkgs,
-    home-manager,
-    systems,
-    ...
+      nixpkgs,
+      home-manager,
+      systems,
+      ...
   } @inputs: let
-  inherit (self) outputs;
-  lib = nixpkgs.lib // home-manager.lib;
-  systems = ["x86_64-linux"];
-  forEachSystem = f: lib.genAttrs (systems) (system: f pkgsFor.${system});
-  pkgsFor = lib.genAttrs (systems) (
-    system:
-    import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    }
-  );
-    in
-  {
-    inherit lib;
-    nixosConfigurations = {
-      qemuVM = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-	        inherit inputs outputs;
-	      };
-        modules = [
-          ./hosts/qemuVM
-          ./users/posborne.nix
-        ];
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
+    systems = ["x86_64-linux"];
+    forEachSystem = f: lib.genAttrs (systems) (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs (systems) (
+      system:
+      import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      }
+    );
+  in
+    {
+      inherit lib;
+      nixosConfigurations = {
+        qemuVM = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [
+            ./profiles/personal-desktop.nix
+            ./hosts/qemu-vm
+          ];
+        };
       };
-    };
 
-    homeConfigurations = {
-      "posborne@qemuVM" = lib.homeManagerConfiguration {
-        modules = [ ./users/posborne.nix ./home ];
-	      pkgs = pkgsFor.x86_64-linux;
-	      extraSpecialArgs = {
-	        inherit inputs outputs;
-	      };
+      homeConfigurations = {
+        "posborne@qemuVM" = lib.homeManagerConfiguration {
+          modules = [
+            ./profiles/personal-desktop.nix
+            ./home
+          ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+        };
       };
     };
-  };
 }
