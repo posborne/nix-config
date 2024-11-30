@@ -6,6 +6,7 @@
     ./desktop.nix
     ./emacs
     ./gaming.nix
+    ./git.nix
     ./gnome.nix
     ./hyprland
     ./python.nix
@@ -32,10 +33,6 @@
       tmux
       tree
       xsv
-
-      # version control
-      gh
-      git
 
       # system tools
       socat

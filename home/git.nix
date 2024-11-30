@@ -5,9 +5,13 @@
   ...
 }: {
 
+  home.packages = with pkgs; [
+    gh
+  ];
+
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
+    package = pkgs.gitFull;
     userName = config.me.name;
     userEmail = config.me.email;
     extraConfig = {

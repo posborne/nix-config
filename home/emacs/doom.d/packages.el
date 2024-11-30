@@ -2,3 +2,4 @@
 ;;; $DOOMDIR/packages.el
 
 (package! dotenv-mode)
+(package! just-mode)

@@ -9,10 +9,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
   };
 
@@ -32,7 +28,7 @@
       import nixpkgs {
         inherit system;
         overlays = [
-          inputs.emacs-overlay.overlays.emacs
+          # inputs.emacs-overlay.overlays.emacs
         ];
         config.allowUnfree = true;
       }

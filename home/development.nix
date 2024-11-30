@@ -11,13 +11,26 @@ in
     (mkIf (cfg.enable) {
       home.packages = with pkgs; [
         # enable more fine-grained nix envs for dev projects
-        direnv
         devenv
 
         # other basic development software
         just
         nmap
+
+        # c/c++ essentials (may be broken out later)
+        gcc
+        gnumake
+        cmake
+        autoconf
+        automake
+        pkg-config
+        libtool
       ];
+
+      programs.direnv = {
+        enable = true;
+        enableZshIntegration = true;
+      };
     })
 
     # dev and desktop enabled
