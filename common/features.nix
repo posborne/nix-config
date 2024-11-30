@@ -27,6 +27,7 @@ with lib;
   options.features.desktop = {
     enable = mkEnableOption "Enable Desktop Apps";
     gnome.enable = mkEnableOption "Enable Gnome Desktop";
+    hyprland.enable = mkEnableOption "Enable Hyprland Desktop";
   };
 
   options.features.development = {

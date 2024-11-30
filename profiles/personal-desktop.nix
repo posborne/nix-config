@@ -12,6 +12,7 @@
     desktop = {
       enable = true;
       gnome.enable = true;
+      hyprland.enable = true;
     };
     gaming.enable = true;
 

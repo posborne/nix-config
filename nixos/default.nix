@@ -8,6 +8,7 @@
     ./user.nix
     ./gaming.nix
     ./grub.nix
+    ./hyprland.nix
     ./gnome.nix
     ./ssh.nix
   ];

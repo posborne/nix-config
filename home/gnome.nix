@@ -115,6 +115,12 @@ in
         toolkit-accessibility = false;
       };
 
+      "org/gnome/Console" = {
+        use-system-font = false;
+        custom-font = "Source Code Pro 12";
+        ignore-scrollback-limit = true;
+      };
+
     };
 
     # install required packages for themes, gnome-extensions, etc.

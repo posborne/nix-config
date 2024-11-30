@@ -7,6 +7,7 @@
     ./emacs
     ./gaming.nix
     ./gnome.nix
+    ./hyprland
     ./python.nix
     ./zsh.nix
   ];

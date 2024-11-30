@@ -31,6 +31,9 @@
       system:
       import nixpkgs {
         inherit system;
+        overlays = [
+          inputs.emacs-overlay.overlays.emacs
+        ];
         config.allowUnfree = true;
       }
     );
@@ -38,7 +41,7 @@
     {
       inherit lib;
       nixosConfigurations = {
-        qemuVM = nixpkgs.lib.nixosSystem {
+        qemu-vm = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs;
           };
@@ -50,8 +53,9 @@
       };
 
       homeConfigurations = {
-        "posborne@qemuVM" = lib.homeManagerConfiguration {
+        "posborne@qemu-vm" = lib.homeManagerConfiguration {
           modules = [
+            inputs.nix-doom-emacs-unstraightened.hmModule
             ./profiles/personal-desktop.nix
             ./home
           ];
