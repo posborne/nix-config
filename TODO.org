@@ -1,0 +1,35 @@
+#+title: Nix Config Todo
+
+This is a general collection of stuff that I might want to look into, generally
+in priority order to improve the overall completeness of this whole nix
+configuration thing.
+
+* Applications to different systems
+
+- [ ] Get home-manager setup going on Darwin for personal laptop
+- [ ] Install "on the metal" on main Ryzen rig
+- [ ] Setup headless virtualized system on NAS rig.
+- [ ] Setup headless docker sysetm on NAS rig.
+
+* Improvements to home configuration
+
+** Dotfiles
+
+- [ ] bashrc config to nix
+- [ ] gitconfig full to nix
+- [ ] tmux conf to nix
+- [ ] zsh/env configuartion to nix (fully)
+- [ ] Alacritty configuration
+
+* Security/Secrets
+
+- [ ] Get OpenSSH configuration fully locked down
+- [ ] Research sops-nix, probably deploy
+- [ ] Automatic setup of full 1password integration ( e.g. GH Key )
+- [ ] Look into fprintd fingerprint hardware/integration.
+
+* FlatPak Apps Support
+
+- [ ] POC support for flatpaks
+* Other Research
+- [ ] https://github.com/serokell/deploy-rs
