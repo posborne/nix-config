@@ -44,7 +44,8 @@
           };
           modules = [
             ./profiles/personal-desktop.nix
-            ./hosts/qemu-vm
+            ./nixos/hosts/qemu-vm
+            ./nixos
           ];
           pkgs = pkgsFor.x86_64-linux;
         };

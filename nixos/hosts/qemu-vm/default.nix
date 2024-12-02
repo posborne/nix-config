@@ -9,7 +9,6 @@
 
   imports = [
     ./hardware-configuration.nix
-    ../../nixos
   ];
 
   # override config to disable virt-host in qemu env
