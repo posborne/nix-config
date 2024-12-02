@@ -39,6 +39,22 @@
         "type": "github"
       }
     },
+    "github-gitignore": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732734603,
+        "narHash": "sha256-tiM4BH9si8O9YxK9vSEe8o8k3V+m2z0tc12dfvHWWoY=",
+        "owner": "github",
+        "repo": "gitignore",
+        "rev": "ef51696ad769a2c7321ed16e9d92cf91335067a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "github",
+        "repo": "gitignore",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -112,6 +128,7 @@
     },
     "root": {
       "inputs": {
+        "github-gitignore": "github-gitignore",
         "home-manager": "home-manager",
         "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",
         "nixpkgs": "nixpkgs_2",

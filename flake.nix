@@ -5,6 +5,7 @@
   inputs = {
     # principle inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    github-gitignore = { url = "github:github/gitignore"; flake = false; };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

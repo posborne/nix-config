@@ -15,8 +15,8 @@ configuration thing.
 
 ** Dotfiles
 
-- [ ] bashrc config to nix
-- [ ] gitconfig full to nix
+- [X] bashrc config to nix (decided to not do)
+- [X] gitconfig full to nix
 - [ ] tmux conf to nix
 - [ ] zsh/env configuartion to nix (fully)
 - [ ] Alacritty configuration
