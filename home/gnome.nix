@@ -44,8 +44,11 @@ in
 
       # workspaces
       "org/gnome/desktop/wm/preferences" = {
-        workspace-names = [ "1" "2" "3" "4" ];
         num-workspaces = 4;
+        workspace-names = [ "1" "2" "3" "4" ];
+
+       # include min/max/close buttons on right side
+        button-layout = "appmenu:minimize,maximize,close";
       };
 
       # disable mouse acceleration
@@ -71,6 +74,7 @@ in
           "Vitals@CoreCoding.com"
           "space-bar@luchrioh"
           "tilingshell@ferrarodomenico.com"
+          "native-window-placement@gnome-shell-extensions.gcampax.github.com"
         ];
       };
 
@@ -110,15 +114,30 @@ in
         accent-color = "blue";
         color-scheme = "prefer-dark";
         enable-hot-corners = false;
-        gtk-theme = "catppuccin-frappe-blue-standard";
+        gtk-theme = "Adwaita";
         icon-theme = "Adwaita";
         toolkit-accessibility = false;
+        monospace-font-name = "SauceCodePro Nerd Font Propo 10";
       };
 
       "org/gnome/Console" = {
         use-system-font = false;
         custom-font = "FiraCode Nerd Font 12";
         ignore-scrollback-limit = true;
+      };
+
+      "org/gnome/desktop/input-sources" = {
+        xkb-options = [
+          "terminate:ctrl_alt_bksp"  # ctrl+alt+bksp exits X session
+          "ctrl:nocaps"  # caps acts as ctrl
+          "shift:both_capslock"  # hit both shifts together to get capslock
+        ];
+      };
+
+      "org/gnome/shell/extensions/tilingshell" = {
+        # could bump this up for a different aesthetic, but why waste pixels
+        outer-gaps = mkUint32 8;
+        inner-gaps = mkUint32 8;
       };
 
     };
