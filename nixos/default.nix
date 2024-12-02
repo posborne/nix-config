@@ -11,6 +11,7 @@
     ./hyprland.nix
     ./gnome.nix
     ./ssh.nix
+    ./1password.nix
   ];
 
   programs.zsh.enable = true;

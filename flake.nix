@@ -45,6 +45,7 @@
             ./profiles/personal-desktop.nix
             ./hosts/qemu-vm
           ];
+          pkgs = pkgsFor.x86_64-linux;
         };
       };
 
