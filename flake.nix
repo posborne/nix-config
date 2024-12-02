@@ -61,6 +61,18 @@
             inherit inputs outputs;
           };
         };
+
+        "posborne@fedora" = lib.homeManagerConfiguration {
+          modules = [
+	    inputs.nix-doom-emacs-unstraightened.hmModule
+	    ./profiles/personal-existing-linux.nix
+	    ./home
+          ];
+	  pkgs = pkgsFor.x86_64-linux;
+ 	  extraSpecialArgs = {
+	    inherit inputs outputs;
+	  };
+        };
       };
     };
 }
