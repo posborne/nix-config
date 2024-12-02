@@ -23,7 +23,7 @@ in {
       libreoffice
 
       # terminal emulators
-      kitty
+      alacritty
       # ghostty (maybe when open)
 
       # browsers
@@ -36,9 +36,6 @@ in {
 
       # utils
       xdg-utils
-
-      # fonts
-      nerdfonts
     ];
 
     fonts.fontconfig.enable = true;

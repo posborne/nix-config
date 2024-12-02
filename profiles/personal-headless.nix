@@ -14,9 +14,9 @@
 
     # And some basic development stuff
     development = {
-      enable = true;
+      enable = mkDefault true;
       # kernelDev = true;
-      python = true;
+      python = mkDefault true;
     };
   };
 

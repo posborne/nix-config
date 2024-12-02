@@ -20,6 +20,11 @@ with lib;
     };
   };
 
+  options.features.virt-host = {
+    enable = mkEnableOption "Virtualization Host";
+    enableDocker = mkEnableOption "Enable docker";
+  };
+
   options.features.gaming = {
     enable = mkEnableOption "Enable Gaming";
   };

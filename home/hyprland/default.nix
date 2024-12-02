@@ -6,7 +6,6 @@ in
 {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      alacritty
       dunst
       eww
       rofi
@@ -18,30 +17,8 @@ in
       xdg-desktop-portal-hyprland
     ];
 
-    home.pointerCursor = {
-      gtk.enable = true;
-      package = pkgs.openzone-cursors;
-      name = "OpenZone_Black";
-      size = 16;
-    };
-
     # gtk = {
-    #   enable = true;
-
-    #   theme = {
-    #     package = pkgs.flat-remix-gtk;
-    #     name = "Flat-Remix-GTK-Grey-Dark";
-    #   };
-
-    #   iconTheme = {
-    #     package = pkgs.flat-remix-icon-theme;
-    #     name = "Flat-Remix-Blue-Dark";
-    #   };
-
-    #   font = {
-    #     name = "Sans";
-    #     size = 11;
-    #   };
+    # ...
     # };
 
     wayland.windowManager.hyprland = {
@@ -63,12 +40,7 @@ in
     };
 
     # services.hyprpaper = {
-    #   enable = true;
-    #   settings = let wallpaper = ./moon_landing.jpg; in {
-    #     preload = [ "${wallpaper}" ];
-    #     wallpaper = [ ",${wallpaper}" ];
-    #     splash = false;
-    #   };
+    # ...
     # };
   };
 }

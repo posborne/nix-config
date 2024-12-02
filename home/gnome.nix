@@ -37,8 +37,8 @@ in
           "firefox.desktop"
           "code.desktop"
           "org.gnome.Console.desktop"
-          "emacsclient.desktop"
           "org.gnome.Nautilus.desktop"
+          "emacs.desktop"
         ];
       };
 
@@ -117,7 +117,7 @@ in
 
       "org/gnome/Console" = {
         use-system-font = false;
-        custom-font = "Source Code Pro 12";
+        custom-font = "FiraCode Nerd Font 12";
         ignore-scrollback-limit = true;
       };
 

@@ -12,6 +12,12 @@
     ../../nixos
   ];
 
+  # override config to disable virt-host in qemu env
+  features.virt-host = {
+    enable = false;
+    enableDocker = false;
+  };
+
   networking = {
     networkmanager = {
       enable = true;
