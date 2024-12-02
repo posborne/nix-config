@@ -37,7 +37,7 @@
         line-numbers = true;
         decorations = true;
         plus-style = "syntax #004000";
-        plus-emph-style = "syntax #00A0000";
+        plus-emph-style = "syntax #00A000";
       };
     };
 
