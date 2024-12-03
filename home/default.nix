@@ -1,16 +1,23 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   imports = [
     ../common/features.nix
     ./development.nix
     ./desktop.nix
     ./emacs
+    ./fonts.nix
     ./gaming.nix
     ./git.nix
     ./gnome.nix
     ./hyprland
     ./python.nix
     ./zsh.nix
+    ./wezterm
   ];
 
   config = {
@@ -62,6 +69,7 @@
       graphviz
 
       # other
+      nixfmt-rfc-style
       home-manager
     ];
   };

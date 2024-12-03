@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   config.me = {
     name = "Paul Osborne";
     username = "posborne";
     email = "osbpau@gmail.com";
-    sshPublicKeys = []; # TODO
+    sshPublicKeys = [ ]; # TODO
   };
 
   config.features = {

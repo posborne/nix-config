@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
 
   programs.zsh = {
     enable = true;
@@ -23,7 +24,13 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "gpg-agent" "python" "ssh-agent" "sudo" ];
+      plugins = [
+        "git"
+        "gpg-agent"
+        "python"
+        "ssh-agent"
+        "sudo"
+      ];
       theme = "ys";
     };
   };

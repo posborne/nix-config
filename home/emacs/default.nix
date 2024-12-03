@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   services.emacs = {
     enable = true;
@@ -10,15 +15,20 @@
     enable = true;
     doomDir = ./doom.d;
     experimentalFetchTree = true; # Disable if there are fetcher issues
-    extraPackages = lib.optionals pkgs.stdenv.isLinux (epkgs: with epkgs; [
-      vterm
-      treesit-grammars.with-all-grammars
-    ]);
+    extraPackages = lib.optionals pkgs.stdenv.isLinux (
+      epkgs: with epkgs; [
+        vterm
+        treesit-grammars.with-all-grammars
+        all-the-icons
+      ]
+    );
   };
 
+  # note: if you try to have both the tty and gui clients
+  # going, you're going to have a bad time.
   home.shellAliases = {
-    ec = "emacsclient";
-    et = "emacsclient --tty";
+    ec = "emacsclient -a '' -n -c";
+    et = "emacsclient -a '' --tty";
   };
 
 }

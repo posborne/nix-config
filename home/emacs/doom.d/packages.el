@@ -3,3 +3,4 @@
 
 (package! dotenv-mode)
 (package! just-mode)
+(package! golden-ratio)

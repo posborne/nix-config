@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 let
   desktopCfg = config.features.desktop;
@@ -12,14 +17,14 @@ in
 
       gtk3.extraConfig = {
         Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+          gtk-application-prefer-dark-theme=1
+        '';
       };
 
       gtk4.extraConfig = {
         Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+          gtk-application-prefer-dark-theme=1
+        '';
       };
     };
 
@@ -45,9 +50,14 @@ in
       # workspaces
       "org/gnome/desktop/wm/preferences" = {
         num-workspaces = 4;
-        workspace-names = [ "1" "2" "3" "4" ];
+        workspace-names = [
+          "1"
+          "2"
+          "3"
+          "4"
+        ];
 
-       # include min/max/close buttons on right side
+        # include min/max/close buttons on right side
         button-layout = "appmenu:minimize,maximize,close";
       };
 
@@ -87,17 +97,17 @@ in
         hotkeys-overlay-combo = "TEMPORARILY";
         leftbox-padding = -1;
         panel-anchors = ''
-        {"0":"MIDDLE"}
-      '';
+          {"0":"MIDDLE"}
+        '';
         panel-lengths = ''
-        {"0":100}
-      '';
+          {"0":100}
+        '';
         panel-positions = ''
-        {"0":"TOP"}
-      '';
+          {"0":"TOP"}
+        '';
         panel-sizes = ''
-        {"0":32}
-      '';
+          {"0":32}
+        '';
         primary-monitor = 0;
         status-icon-padding = -1;
         tray-padding = -1;
@@ -106,7 +116,11 @@ in
 
       # vitals extension
       "org/gnome/shell/extensions/vitals" = {
-        hot-sensors = [ "_memory_usage_" "_processor_usage_" "_storage_free_" ];
+        hot-sensors = [
+          "_memory_usage_"
+          "_processor_usage_"
+          "_storage_free_"
+        ];
         show-network = true;
       };
 
@@ -117,20 +131,20 @@ in
         gtk-theme = "Adwaita";
         icon-theme = "Adwaita";
         toolkit-accessibility = false;
-        monospace-font-name = "SauceCodePro Nerd Font Propo 10";
+        monospace-font-name = "CaskaydiaCove Nerd Font 14";
       };
 
       "org/gnome/Console" = {
         use-system-font = false;
-        custom-font = "FiraCode Nerd Font 12";
+        custom-font = "CaskaydiaCove Nerd Font 12";
         ignore-scrollback-limit = true;
       };
 
       "org/gnome/desktop/input-sources" = {
         xkb-options = [
-          "terminate:ctrl_alt_bksp"  # ctrl+alt+bksp exits X session
-          "ctrl:nocaps"  # caps acts as ctrl
-          "shift:both_capslock"  # hit both shifts together to get capslock
+          "terminate:ctrl_alt_bksp" # ctrl+alt+bksp exits X session
+          "ctrl:nocaps" # caps acts as ctrl
+          "shift:both_capslock" # hit both shifts together to get capslock
         ];
       };
 

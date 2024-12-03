@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   cfg = config.features.desktop;
-in {
+in
+{
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       # media

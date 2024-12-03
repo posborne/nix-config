@@ -4,7 +4,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
 
   home.packages = with pkgs; [
     gh
@@ -26,7 +27,7 @@
     #   signByDefault = false;
     # };
 
-    includes = [];
+    includes = [ ];
 
     # Delta syntax highligher and fancy pager
     # See https://github.com/dandavison/delta
@@ -58,14 +59,12 @@
 
     # stoken from nastevens nix-config; generates a global gitignore
     # using gitignore fragments from https://github.com/github/gitignore
-    ignores = let
-      gitignore = path: name:
-        builtins.readFile
-          "${inputs.github-gitignore}/${path}/${name}.gitignore";
-      gitignoreGlobal = gitignore "Global";
-      generate = list:
-        lib.splitString "\n" (builtins.concatStringsSep "\n" list);
-    in
+    ignores =
+      let
+        gitignore = path: name: builtins.readFile "${inputs.github-gitignore}/${path}/${name}.gitignore";
+        gitignoreGlobal = gitignore "Global";
+        generate = list: lib.splitString "\n" (builtins.concatStringsSep "\n" list);
+      in
       generate [
         (gitignoreGlobal "Backup")
         (gitignoreGlobal "Linux")
@@ -76,9 +75,9 @@
         (gitignoreGlobal "VisualStudioCode")
         (gitignoreGlobal "Windows")
         (''
-            # local direnv cache
-            .direnv
-          '')
+          # local direnv cache
+          .direnv
+        '')
       ];
   };
 }

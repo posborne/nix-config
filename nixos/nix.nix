@@ -4,12 +4,19 @@
   inputs,
   outputs,
   ...
-}: {
+}:
+{
   nix = {
     settings = {
-      trusted-users = ["root" "@wheel"];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       auto-optimise-store = lib.mkDefault true;
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       warn-dirty = true;
     };
 
@@ -26,9 +33,9 @@
     };
 
     # Add each flake input as a registry
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
 
     # Add nixpkgs input to NIX_PATH
-    nixPath = ["nixpkgs=${inputs.nixpkgs.outPath}"];
+    nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
   };
 }

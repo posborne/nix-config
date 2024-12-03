@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   desktopCfg = config.features.desktop;
   gnomeCfg = config.features.desktop.gnome;
-in {
+in
+{
   config = mkIf (desktopCfg.enable && gnomeCfg.enable) {
     services.xserver = {
       enable = true;

@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   cfgVirtHost = config.features.virt-host;
   cfgDesktop = config.features.desktop;
 in
 {
-  config = mkMerge[
+  config = mkMerge [
     # if virt enabled, always enable libvirt
     (mkIf (cfgVirtHost.enable) {
       virtualisation.libvirtd.enable = true;
@@ -25,7 +30,10 @@ in
         # default 172.17.0.0/16
         daemon.settings = {
           default-address-pools = [
-            { base = "10.0.64.0/18"; size = "24"; }
+            {
+              base = "10.0.64.0/18";
+              size = "24";
+            }
           ];
         };
       };

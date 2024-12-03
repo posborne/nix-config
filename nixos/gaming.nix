@@ -1,7 +1,8 @@
 { lib, config, ... }:
 let
   cfg = config.features.gaming;
-in {
+in
+{
 
   config = lib.mkIf cfg.enable {
     programs.steam = {
