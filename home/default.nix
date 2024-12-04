@@ -16,6 +16,7 @@
     ./gnome.nix
     ./hyprland
     ./python.nix
+    ./tmux.nix
     ./zsh.nix
     ./wezterm
   ];
@@ -37,7 +38,6 @@
       killall
       pstree
       ripgrep
-      tmux
       tree
       xsv
 

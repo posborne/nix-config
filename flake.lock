@@ -90,6 +90,26 @@
         "type": "github"
       }
     },
+    "minimal-tmux": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1730695632,
+        "narHash": "sha256-JtbuSxWFR94HiUdQL9uIm2V/kwGz0gbVbqvYWmEncbc=",
+        "owner": "niksingh710",
+        "repo": "minimal-tmux-status",
+        "rev": "d7188c1aeb1c7dd03230982445b7360f5e230131",
+        "type": "github"
+      },
+      "original": {
+        "owner": "niksingh710",
+        "repo": "minimal-tmux-status",
+        "type": "github"
+      }
+    },
     "nix-doom-emacs-unstraightened": {
       "inputs": {
         "doomemacs": "doomemacs",
@@ -166,6 +186,7 @@
       "inputs": {
         "github-gitignore": "github-gitignore",
         "home-manager": "home-manager",
+        "minimal-tmux": "minimal-tmux",
         "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_2",

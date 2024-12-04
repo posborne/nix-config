@@ -17,9 +17,9 @@ configuration thing.
 
 - [X] bashrc config to nix (decided to not do)
 - [X] gitconfig full to nix
-- [ ] tmux conf to nix
+- [X] tmux conf to nix
 - [ ] zsh/env configuartion to nix (fully)
-- [ ] Alacritty configuration
+- [ ] Alacritty configuration (using wezterm instead)
 
 * Security/Secrets
 
