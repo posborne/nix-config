@@ -10,4 +10,7 @@ config.color_scheme = 'Palenight (Gogh)'
 config.front_end = 'WebGpu'
 config.webgpu_power_preference = 'HighPerformance'
 
+-- Hide tab bar unless we're using tabs, ususally not
+config.hide_tab_bar_if_only_one_tab = true
+
 return config
