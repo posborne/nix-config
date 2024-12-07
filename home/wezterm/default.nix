@@ -8,9 +8,11 @@
 {
   # wezterm uses the gpu, hack to make work on non-nixos systems
   # TODO: probably needs conditional inclusion
-  nixGL.packages = inputs.nixgl.packages;
-  nixGL.defaultWrapper = "mesa";
-  nixGL.installScripts = [ "mesa" ];
+  nixGL = lib.optionalAttrs pkgs.stdenv.isLinux {
+    packages = inputs.nixgl.packages;
+    defaultWrapper = "mesa";
+    installScripts = [ "mesa" ];
+  };
 
   programs.wezterm = {
     enable = true;

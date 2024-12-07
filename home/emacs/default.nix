@@ -15,13 +15,13 @@
     enable = true;
     doomDir = ./doom.d;
     experimentalFetchTree = true; # Disable if there are fetcher issues
-    extraPackages = lib.optionals pkgs.stdenv.isLinux (
+    extraPackages = if pkgs.stdenv.isLinux then (
       epkgs: with epkgs; [
         vterm
         treesit-grammars.with-all-grammars
         all-the-icons
       ]
-    );
+    ) else epkgs: [];
   };
 
   # note: if you try to have both the tty and gui clients

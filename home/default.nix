@@ -8,69 +8,84 @@
   imports = [
     ../common/features.nix
     ./development.nix
-    ./desktop.nix
     ./emacs
     ./fonts.nix
     ./gaming.nix
     ./git.nix
-    ./gnome.nix
-    ./hyprland
     ./python.nix
     ./tmux.nix
     ./zsh.nix
     ./wezterm
+    ./desktop.nix
+    ./hyprland
+    ./gnome.nix
   ];
 
-  config = {
-    home = {
-      homeDirectory = lib.mkDefault "/home/${config.me.username}";
-      username = "${config.me.username}";
-      stateVersion = "24.11";
-    };
+  config = lib.mkMerge [
+    ({
+      home = {
+        username = "${config.me.username}";
+        stateVersion = "24.11";
+      };
+      home.packages = with pkgs; [
+        # == common ==
+          # basic cli stuff
+        bat
+        fd
+        fzf
+        htop
+        jq
+        killall
+        pstree
+        ripgrep
+        tree
+        xsv
 
-    home.packages = with pkgs; [
-      # basic cli stuff
-      bat
-      fd
-      fzf
-      htop
-      jq
-      killall
-      pstree
-      ripgrep
-      tree
-      xsv
+        # system tools
+        socat
+        file
+        lsof
 
-      # system tools
-      socat
-      file
-      lsof
+        # media/graphics
+        imagemagick
 
-      # network tools
-      iproute2
+        # security/privacy
+        gnupg
 
-      # media/graphics
-      imagemagick
+        # text editors (sans emacs)
+        helix
+        neovim
 
-      # desktop tools
-      pavucontrol
-      networkmanagerapplet
-      dconf
+        # additional cli tools
+        xclip
+        graphviz
 
-      # security/privacy
-      gnupg
+        # other
+        nixfmt-rfc-style
+        home-manager
+      ];
+    })
 
-      # text editors (sans emacs)
-      helix
-      neovim
+    (lib.mkIf pkgs.stdenv.isDarwin {
+      home = {
+        homeDirectory = "/Users/${config.me.username}";
+      };
+      home.packages = with pkgs; [];
+    })
 
-      # additional cli tools
-      xclip
-      graphviz
+    (lib.mkIf pkgs.stdenv.isLinux {
+      home = {
+        homeDirectory = "/home/${config.me.username}";
+     };
 
-      # other
-      nixfmt-rfc-style
-      home-manager
-    ];
-  };
+      home.packages = with pkgs; [
+        # network tools
+        iproute2
+        # desktop tools
+        pavucontrol
+        networkmanagerapplet
+        dconf
+      ];
+    })
+  ];
 }

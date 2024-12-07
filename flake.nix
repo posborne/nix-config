@@ -13,6 +13,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
     nixgl = {
       url = "github:nix-community/nixGL";
@@ -22,6 +26,7 @@
       url = "github:niksingh710/minimal-tmux-status";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs =
@@ -30,14 +35,17 @@
       nixpkgs,
       home-manager,
       systems,
+      nix-darwin,
       ...
     }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      systems = [ "x86_64-linux" ];
+      linuxSystems = [ "x86_64-linux" ];
+      darwinSystems = [ "aarch64-darwin" ];
       forEachSystem = f: lib.genAttrs (systems) (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs (systems) (
+      allSystems = linuxSystems ++ darwinSystems;
+      pkgsFor = lib.genAttrs (allSystems) (
         system:
         import nixpkgs {
           inherit system;
@@ -64,7 +72,33 @@
         };
       };
 
+      darwinConfigurations = {
+        pomac = nix-darwin.lib.darwinSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          system = "aarch64-darwin";
+          modules = [
+            ./profiles/personal-mac.nix
+            ./darwin
+          ];
+        };
+      };
+
       homeConfigurations = {
+        "posborne@pobox-m3" = lib.homeManagerConfiguration {
+          modules = [
+            inputs.nix-doom-emacs-unstraightened.hmModule
+            ./profiles/personal-mac.nix
+            ./home
+            inputs.mac-app-util.homeManagerModules.default
+          ];
+          pkgs = pkgsFor.aarch64-darwin;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+        };
+
         "posborne@qemu-vm" = lib.homeManagerConfiguration {
           modules = [
             inputs.nix-doom-emacs-unstraightened.hmModule

@@ -1,5 +1,5 @@
-default_home_target := x".#${USERNAME}@${HOSTNAME:-qemu-vm}"
-default_nixos_target := x".#${HOSTNAME}"
+default_home_target := x".#${USERNAME:-posborne}@${HOSTNAME:-qemu-vm}"
+default_nixos_target := x".#${HOSTNAME:-qemu-vm}"
 
 default:
     @just --list

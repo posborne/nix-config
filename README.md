@@ -110,5 +110,29 @@ time.
 
 ## Darwin
 
-TO BE DETERMINED.
+The repo is now setup to support install appropriate software via
+home-manager with support from nix-darwin.
+
+To setup a new MacOS machine, you need to get nix on the system first.
+Again, we'll do this with the determinate systems installer as follows.
+
+``` sh
+# install; note that the determinate systems install has nix-command
+# and flakes enabled by default, so no extra step for that
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
+# test to make sure nix is present
+`which nix`
+```
+
+We'll more permanently bootstrap in the nix-darwin command for later use, but
+for the first run we can do the following from this repo root (we assume this
+tree has been pulled down in some other way for now).
+
+``` sh
+# Replace my-mac with whatever machine you want to setup; if you have
+# special requirements modify as required.
+nix run nix-darwin -- switch --flake .#my-mac
+```
+
 
