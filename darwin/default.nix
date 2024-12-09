@@ -1,4 +1,10 @@
-{ inputs, config, pkgs, lib, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ../common/features.nix
@@ -8,7 +14,10 @@
   nix = {
     package = pkgs.nix;
     settings = {
-      "extra-experimental-features" = [ "nix-command" "flakes" ];
+      "extra-experimental-features" = [
+        "nix-command"
+        "flakes"
+      ];
     };
   };
 
@@ -16,7 +25,7 @@
   homebrew = {
     enable = true;
     brews = [
-      "imagemagick"  # example - brew install imagemagick
+      "imagemagick" # example - brew install imagemagick
       "htop"
     ];
     casks = [
@@ -29,19 +38,26 @@
   inputs.home-manager.darwinModules.home-manager = {
     useGlobalPkgs = true;
     enable = true;
-    users.${config.me.username} = { pkgs, config, lib, ... }: {
-      home = {
-        enableNixpkgsReleaseCheck = false;
-        packages = pkgs.callPackage ./packages.nix {};
-        # file = lib.mkMerge [
-        #   sharedFiles
-        #   additionalFiles
-        #   { "emacs-launcher.command".source = myEmacsLauncher; }
-        # ];
+    users.${config.me.username} =
+      {
+        pkgs,
+        config,
+        lib,
+        ...
+      }:
+      {
+        home = {
+          enableNixpkgsReleaseCheck = false;
+          packages = pkgs.callPackage ./packages.nix { };
+          # file = lib.mkMerge [
+          #   sharedFiles
+          #   additionalFiles
+          #   { "emacs-launcher.command".source = myEmacsLauncher; }
+          # ];
 
-        stateVersion = "24.11";
+          stateVersion = "24.11";
+        };
       };
-    };
   };
 
   # launchd?

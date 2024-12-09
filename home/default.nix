@@ -29,7 +29,7 @@
       };
       home.packages = with pkgs; [
         # == common ==
-          # basic cli stuff
+        # basic cli stuff
         bat
         fd
         fzf
@@ -70,13 +70,13 @@
       home = {
         homeDirectory = "/Users/${config.me.username}";
       };
-      home.packages = with pkgs; [];
+      home.packages = with pkgs; [ ];
     })
 
     (lib.mkIf pkgs.stdenv.isLinux {
       home = {
         homeDirectory = "/home/${config.me.username}";
-     };
+      };
 
       home.packages = with pkgs; [
         # network tools

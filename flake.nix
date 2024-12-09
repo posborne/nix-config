@@ -86,6 +86,18 @@
       };
 
       homeConfigurations = {
+        "posborne@wsl" = lib.homeManagerConfiguration {
+	  modules = [
+	    inputs.nix-doom-emacs-unstraightened.hmModule
+	    ./profiles/personal-wsl.nix
+	    ./home
+	  ];
+	  pkgs = pkgsFor.x86_64-linux;
+	  extraSpecialArgs = {
+	    inherit inputs outputs;
+	  };
+	};
+
         "posborne@pobox-m3" = lib.homeManagerConfiguration {
           modules = [
             inputs.nix-doom-emacs-unstraightened.hmModule

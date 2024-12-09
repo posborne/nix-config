@@ -1,47 +1,47 @@
 { pkgs }:
 with pkgs;
 [
-# TODO: duplication, just experimenting...
+  # TODO: duplication, just experimenting...
 
-# basic cli stuff
-bat
-fd
-fzf
-htop
-jq
-killall
-pstree
-ripgrep
-tree
-xsv
+  # basic cli stuff
+  bat
+  fd
+  fzf
+  htop
+  jq
+  killall
+  pstree
+  ripgrep
+  tree
+  xsv
 
-# system tools
-socat
-file
-lsof
+  # system tools
+  socat
+  file
+  lsof
 
-# network tools
-iproute2
+  # network tools
+  iproute2
 
-# media/graphics
-imagemagick
+  # media/graphics
+  imagemagick
 
-# desktop tools
-pavucontrol
-networkmanagerapplet
-dconf
+  # desktop tools
+  pavucontrol
+  networkmanagerapplet
+  dconf
 
-# security/privacy
-gnupg
+  # security/privacy
+  gnupg
 
-# text editors (sans emacs)
-helix
-neovim
+  # text editors (sans emacs)
+  helix
+  neovim
 
-# additional cli tools
-xclip
-graphviz
+  # additional cli tools
+  xclip
+  graphviz
 
-# other
-nixfmt-rfc-style
+  # other
+  nixfmt-rfc-style
 ]
